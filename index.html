@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#10121b" />
+  <title>Game Hub | Play Together</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="toast" class="toast" role="status"></div>
+
+  <main id="authScreen" class="auth-layout">
+    <section class="auth-hero">
+      <div class="brand"><span class="brand-mark">GH</span><span>GAME<span class="accent">HUB</span></span></div>
+      <div class="hero-copy">
+        <span class="eyebrow">YOUR SQUAD STARTS HERE</span>
+        <h1>Find your people.<br><span class="gradient-text">Play your way.</span></h1>
+        <p>One place for your gamer tags, friends, chats, and game-night plans.</p>
+        <div class="hero-pills"><span>✦ Gamer profiles</span><span>✦ Friends</span><span>✦ Party planning</span></div>
+      </div>
+      <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
+      <div class="hero-foot">MADE FOR YOUR CREW <span>●</span> PLAY NICE. HAVE FUN.</div>
+    </section>
+    <section class="auth-panel">
+      <div class="auth-card">
+        <div class="mobile-brand brand"><span class="brand-mark">GH</span><span>GAME<span class="accent">HUB</span></span></div>
+        <div class="auth-tabs"><button class="auth-tab active" data-auth="login">Log in</button><button class="auth-tab" data-auth="signup">Create account</button></div>
+        <div id="loginForm">
+          <h2>Welcome back</h2><p class="muted">Your next game session is waiting.</p>
+          <form id="loginFormEl">
+            <label>Username<input id="loginUsername" autocomplete="username" placeholder="Your Game Hub username" required /></label>
+            <label>Password<input id="loginPassword" type="password" autocomplete="current-password" placeholder="Your password" required /></label>
+            <button class="btn primary full" type="submit">Enter Game Hub <span>→</span></button>
+          </form>
+          <p class="small-note">Demo note: accounts are stored only in this browser.</p>
+        </div>
+        <div id="signupForm" class="hidden">
+          <h2>Build your player card</h2><p class="muted">Pick a username your friends can find.</p>
+          <form id="signupFormEl">
+            <label>Display name<input id="signupDisplay" maxlength="24" placeholder="e.g. Aarav" required /></label>
+            <label>Username<input id="signupUsername" minlength="3" maxlength="18" pattern="[A-Za-z0-9_]+" placeholder="e.g. aaravplays" required /><span class="field-help">3–18 characters: letters, numbers, underscores.</span></label>
+            <label>Password<input id="signupPassword" type="password" minlength="6" autocomplete="new-password" placeholder="At least 6 characters" required /></label>
+            <label>Choose an avatar</label>
+            <div id="avatarPicker" class="avatar-picker"></div>
+            <button class="btn primary full" type="submit">Create my account <span>→</span></button>
+          </form>
+          <p class="small-note">Use a nickname. Don't add your real address, school, or other private details.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <main id="appScreen" class="app-shell hidden">
+    <aside class="sidebar">
+      <a class="brand side-brand" href="#" aria-label="Game Hub home"><span class="brand-mark">GH</span><span>GAME<span class="accent">HUB</span></span></a>
+      <div class="side-profile"><div id="sideAvatar" class="avatar avatar-lg"></div><div class="profile-copy"><strong id="sideDisplay">Player</strong><span id="sideUsername">@player</span></div><span class="online-dot"></span></div>
+      <div class="nav-label">WORKSPACE</div>
+      <nav class="main-nav">
+        <button class="nav-item active" data-view="dashboard"><span>▦</span> Dashboard</button>
+        <button class="nav-item" data-view="discover"><span>⌕</span> Find players <span id="discoverBadge" class="nav-badge hidden">!</span></button>
+        <button class="nav-item" data-view="friends"><span>♧</span> Friends <span id="requestBadge" class="nav-badge hidden">0</span></button>
+        <button class="nav-item" data-view="chat"><span>▤</span> Messages</button>
+        <button class="nav-item" data-view="parties"><span>◉</span> Game parties</button>
+      </nav>
+      <div class="sidebar-bottom"><div class="mini-tip"><span class="tip-icon">✦</span><strong>Squad tip</strong><p>Share your gamer tags with friends so they can add you in-game.</p></div><button id="logoutBtn" class="nav-item logout"><span>↪</span> Log out</button></div>
+    </aside>
+
+    <section class="main-area">
+      <header class="topbar"><div class="mobile-brand brand"><span class="brand-mark">GH</span><span>GAME<span class="accent">HUB</span></span></div><div class="breadcrumb">Workspace <span>/</span> <strong id="pageTitle">Dashboard</strong></div><div class="top-actions"><button class="icon-btn" id="quickSearchBtn" title="Find players">⌕</button><div id="topAvatar" class="avatar avatar-sm"></div></div></header>
+      <div class="page-wrap">
+        <section id="view-dashboard" class="view active-view">
+          <div class="welcome-row"><div><span class="eyebrow">PLAYER LOBBY</span><h1>What's the plan, <span id="welcomeName">Player</span>?</h1><p class="muted">Your people, your games, all in one place.</p></div><button class="btn primary" data-go="parties">＋ Create a party</button></div>
+          <div class="stat-grid">
+            <article class="stat-card"><div class="stat-icon purple">♧</div><div><span class="stat-label">Friends</span><strong id="friendCount">0</strong><small>players in your squad</small></div></article>
+            <article class="stat-card"><div class="stat-icon blue">▤</div><div><span class="stat-label">Unread chats</span><strong id="chatCount">0</strong><small>conversations ready</small></div></article>
+            <article class="stat-card"><div class="stat-icon orange">◉</div><div><span class="stat-label">Game parties</span><strong id="partyCount">0</strong><small>your active plans</small></div></article>
+          </div>
+          <div class="content-grid">
+            <article class="panel profile-panel"><div class="panel-heading"><div><span class="eyebrow">YOUR PLAYER CARD</span><h2>Gamer profile</h2></div><button class="text-btn" id="editProfileBtn">Edit profile ↗</button></div><div class="player-card"><div id="dashAvatar" class="avatar avatar-xl"></div><div class="player-info"><h3 id="dashDisplay">Player</h3><p id="dashHandle">@player</p><span class="status-pill"><i></i> Ready to play</span></div><span class="level-chip">PLAYER</span></div><div class="game-id-list" id="gameIdSummary"></div></article>
+            <article class="panel activity-panel"><div class="panel-heading"><div><span class="eyebrow">YOUR CREW</span><h2>Friends online</h2></div><button class="text-btn" data-go="friends">View all ↗</button></div><div id="onlineFriends" class="friend-preview-list"></div><div class="empty-inline hidden" id="noFriendsDash"><div class="empty-symbol">♧</div><strong>Your squad starts here</strong><p>Find your friends by their Game Hub username.</p><button class="btn secondary small" data-go="discover">Find players</button></div></article>
+          </div>
+          <div class="panel quick-panel"><div><span class="eyebrow">READY UP</span><h2>Make something happen</h2><p class="muted">Start a chat or create a party to coordinate your next session.</p></div><div class="quick-actions"><button class="quick-action" data-go="discover"><span class="quick-icon purple">⌕</span><span><strong>Find players</strong><small>Grow your squad</small></span><b>→</b></button><button class="quick-action" data-go="chat"><span class="quick-icon blue">▤</span><span><strong>Open messages</strong><small>Talk with your friends</small></span><b>→</b></button><button class="quick-action" data-go="parties"><span class="quick-icon orange">◉</span><span><strong>Plan a game</strong><small>Invite your squad</small></span><b>→</b></button></div></div>
+        </section>
+
+        <section id="view-discover" class="view">
+          <div class="page-heading"><div><span class="eyebrow">COMMUNITY</span><h1>Find your players</h1><p class="muted">Search by Game Hub username and send a friend request.</p></div></div>
+          <div class="search-bar"><span>⌕</span><input id="playerSearch" placeholder="Search usernames or display names..." /><span class="search-hint">PLAYERS</span></div>
+          <div id="discoverResults" class="player-grid"></div>
+        </section>
+
+        <section id="view-friends" class="view">
+          <div class="page-heading"><div><span class="eyebrow">YOUR SQUAD</span><h1>Friends & requests</h1><p class="muted">Manage your connections and build your team.</p></div><button class="btn primary" data-go="discover">＋ Find players</button></div>
+          <div class="section-tabs"><button class="section-tab active" data-friendtab="friends">My friends <span id="friendsTabCount">0</span></button><button class="section-tab" data-friendtab="requests">Requests <span id="requestsTabCount">0</span></button><button class="section-tab" data-friendtab="sent">Sent</button></div>
+          <div id="friendsContent" class="player-grid"></div>
+        </section>
+
+        <section id="view-chat" class="view">
+          <div class="page-heading"><div><span class="eyebrow">SQUAD COMMS</span><h1>Messages</h1><p class="muted">Keep the conversation going.</p></div></div>
+          <div class="chat-layout panel"><div class="chat-contacts"><div class="chat-search"><input id="chatSearch" placeholder="Find a friend..." /></div><div id="chatContactList"></div></div><div id="chatMain" class="chat-main"><div class="chat-empty"><div class="empty-symbol">▤</div><h3>Pick a conversation</h3><p>Select a friend on the left to open your chat.</p></div></div></div>
+        </section>
+
+        <section id="view-parties" class="view">
+          <div class="page-heading"><div><span class="eyebrow">SQUAD PLANNER</span><h1>Game parties</h1><p class="muted">Create a lobby plan, choose a game, and invite your friends.</p></div></div>
+          <div class="party-layout"><form id="partyForm" class="panel party-form"><div class="panel-heading"><div><span class="eyebrow">NEW SESSION</span><h2>Create a party</h2></div><span class="form-icon">◉</span></div><label>Party name<input id="partyName" maxlength="40" placeholder="e.g. Friday Minecraft world" required /></label><label>Game<select id="partyGame"><option>Minecraft</option><option>Roblox</option><option>Free Fire</option><option>Among Us</option><option>GTA Online</option><option>Other</option></select></label><label>Plan / lobby details<textarea id="partyDetails" rows="3" maxlength="240" placeholder="What are you planning to play? Add a time or lobby note..."></textarea></label><label>Invite friends <span class="field-help">You can invite friends after creating the party too.</span></label><div id="partyInvitePicker" class="invite-picker"></div><button class="btn primary full" type="submit">Create game party <span>→</span></button></form><div class="party-list-wrap"><div class="panel-heading"><div><span class="eyebrow">YOUR SESSIONS</span><h2>Party board</h2></div><span class="count-chip" id="partyBoardCount">0 parties</span></div><div id="partyList" class="party-list"></div></div></div>
+        </section>
+
+        <section id="view-profile" class="view">
+          <div class="page-heading"><div><span class="eyebrow">PLAYER SETTINGS</span><h1>Edit your profile</h1><p class="muted">Update your avatar, display name, and gamer IDs.</p></div></div>
+          <form id="profileForm" class="panel profile-edit-form"><div class="edit-avatar-row"><div id="editAvatarPreview" class="avatar avatar-xl"></div><div><strong>Choose your avatar</strong><p class="muted">Pick an in-built avatar.</p><div id="editAvatarPicker" class="avatar-picker"></div></div></div><div class="form-two-col"><label>Display name<input id="editDisplay" maxlength="24" required /></label><label>Game Hub username<input id="editUsername" disabled /><span class="field-help">Username can't be changed in this demo.</span></label></div><h3 class="form-subtitle">Your gamer IDs</h3><p class="muted">Only share IDs you are comfortable sharing with your friends.</p><div class="form-two-col"><label>Minecraft gamertag<input id="minecraftId" maxlength="40" placeholder="Minecraft gamertag" /></label><label>Roblox username / ID<input id="robloxId" maxlength="40" placeholder="Roblox username or ID" /></label><label>Free Fire UID<input id="ffId" maxlength="40" placeholder="Free Fire UID" /></label><label>Other game / ID<input id="otherGame" maxlength="60" placeholder="e.g. Fortnite: player123" /></label></div><button class="btn primary" type="submit">Save changes</button></form>
+        </section>
+      </div>
+      <footer class="app-footer"><span>GAMEHUB <span class="accent">BETA</span></span><span>Play together. Be respectful.</span><span>Front-end demo · Browser storage</span></footer>
+    </section>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>
